@@ -1,8 +1,11 @@
-export default {
-  // ... other config
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+
+export default defineConfig({
+  plugins: [vue()],
   server: {
-    host: '0.0.0.0', // Required if accessed externally
-    port: 5173,      // Or whatever port you're using
-    allowedHosts: ['abhitprints.in', 'localhost']
+    host: '0.0.0.0',
+    port: 5173,
+    allowedHosts: ['abhitprints.in', 'www.abhitprints.in', 'localhost']
   }
-}
+});
