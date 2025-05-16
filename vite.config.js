@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [vue()],
   server: {
     host: '0.0.0.0',
-    port: 5173,
-    allowedHosts: ['abhitprints.in', 'www.abhitprints.in', 'localhost']
+    port: 5174,
+    allowedHosts: ['admin.abhitprints.in', 'www.admin.abhitprints.in', 'localhost']
   }
 });
