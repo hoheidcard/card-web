@@ -1,0 +1,1 @@
+import{c as r,b as o,a as c,r as e,o as n}from"./index-QZaKag1-.js";const _={class:"dashboard-layout dashboard-layout-crm"},d={class:"middle-container"},u={__name:"DashboardLayoutCRM",setup(m){return(i,l)=>{const t=e("NavbarCRM"),a=e("router-view"),s=e("Footer1");return n(),r("section",_,[o(t),c("div",d,[o(a)]),o(s)])}}};export{u as default};

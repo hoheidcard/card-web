@@ -1,0 +1,1 @@
+import{_ as o}from"./_plugin-vue_export-helper-DlAUqK2U.js";import{c as s,a as t,o as a}from"./index-QZaKag1-.js";const r={},c={class:"loader-page"};function n(d,e,l,p,_,i){return a(),s("section",c,e[0]||(e[0]=[t("div",{class:"loader"},null,-1)]))}const u=o(r,[["render",n]]);export{u as default};
