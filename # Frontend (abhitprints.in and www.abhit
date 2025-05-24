@@ -1,0 +1,89 @@
+# Frontend (abhitprints.in and www.abhitprints.in)
+server {
+    listen 80;
+    server_name abhitprints.in www.abhitprints.in;
+    
+    # HTTP to HTTPS redirection
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+server {
+    listen 443 ssl;
+    server_name abhitprints.in www.abhitprints.in;
+
+    ssl_certificate /etc/letsencrypt/live/abhitprints.in/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/abhitprints.in/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+    location / {
+        proxy_pass http://167.86.68.246:5173;  # Frontend server (e.g., React app)
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+
+# Backend (api.abhitprints.in)
+server {
+    listen 80;
+    server_name api.abhitprints.in;
+    
+    # Redirect HTTP to HTTPS
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+server {
+    listen 443 ssl;
+    server_name api.abhitprints.in;
+
+    ssl_certificate /etc/letsencrypt/live/abhitprints.in/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/abhitprints.in/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+    location / {
+        proxy_pass http://167.86.68.246:3111;  # Backend server (Node.js API)
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+
+
+# Admin (admin.abhitprints.in)
+server {
+    listen 80;
+    server_name admin.abhitprints.in;
+    
+    # Redirect HTTP to HTTPS
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+server {
+    listen 443 ssl;
+    server_name admin.abhitprints.in;
+
+    ssl_certificate /etc/letsencrypt/live/abhitprints.in/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/abhitprints.in/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+    location / {
+        proxy_pass http://167.86.68.246:5174;  # admin server (vue.js API)
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+
+
